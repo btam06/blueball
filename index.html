@@ -1,12 +1,39 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="sup/style.css" />
-    </head>
-    <body>
-        <table id="ghosts">
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+	</head>
+    <body x-data="getData()">
+        <table id="items">
+			<tr>
+				<th>Name</th>
+				<template x-for="attribute in attributes" :key="attribute">
+					<th x-text="attribute"></th>
+				</template>
+			</tr>
+			<template x-for="[name, itemAttributes] in Object.entries(items)" :key="name">
+				<tr>
+					<td x-text="name"></td>
+					<template x-for="attribute in attributes" :key="attribute">
+						<td :class="{ 'hasAttribute': itemAttributes.indexOf(attribute) >= 0 }"></td>
+					</template>
+				</tr>
+			</template>
         </table>
         <div id="attrs">
+			<template x-for="attribute in attributes" :key="attribute">
+				<div>
+					<input type="checkbox" name="attributes[]" :value="attribute" />
+					<label x-text="attribute"></label>
+				</div>
+				</template>
+			</template>
         </div>
-    </body>
-    <script src="sup/detect.js" type="text/javascript"></script>
+	</body>
+	<foot>
+		<script src="resources/js/data.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="resources/css/style.css" />
+		<!--<script src="resources/detect.js" type="text/javascript"></script>-->
+    </foot>
 </html>
