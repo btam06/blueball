@@ -3,8 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+		<script src="resources/js/data.js" type="text/javascript"></script>
+		<!--<script src="resources/detect.js" type="text/javascript"></script>-->
+		<link rel="stylesheet" href="resources/css/style.css" />
 	</head>
-    <body x-data="getData()">
+    <body x-data="data">
         <table id="items">
 			<tr>
 				<th>Name</th>
@@ -22,18 +25,23 @@
 			</template>
         </table>
         <div id="attrs">
-			<template x-for="attribute in attributes" :key="attribute">
-				<div>
-					<input type="checkbox" name="attributes[]" :value="attribute" />
-					<label x-text="attribute"></label>
-				</div>
+			<table>
+				<tr>
+					<th>Attribute</th>
+					<th>No</th>
+					<th>No Data</th>
+					<th>Yes</th>
+				</tr>
+				<template x-for="attribute in attributes" :key="attribute">
+					<tr>
+						<td><label x-text="attribute"></label></td>
+						<td><input type="radio" :name="'attributes[' + attribute + '][]'" :value="attribute" /></td>
+						<td><input type="radio" :name="'attributes[' + attribute + '][]'" :value="attribute" checked/></td>
+						<td><input type="radio" :name="'attributes[' + attribute + '][]'" :value="attribute" /></td>
+					</tr>
+					</template>
 				</template>
-			</template>
+			</table>
         </div>
 	</body>
-	<foot>
-		<script src="resources/js/data.js" type="text/javascript"></script>
-		<link rel="stylesheet" href="resources/css/style.css" />
-		<!--<script src="resources/detect.js" type="text/javascript"></script>-->
-    </foot>
 </html>

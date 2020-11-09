@@ -14,34 +14,6 @@ var matchAttribute = function(active, match) {
     return true;
 }
 
-// Get attribute list
-var attrList = [];
-for(var i = 0; i < names.length; i++) {
-    var attrMini = $ghosts[names[i]];
-    for(var j = 0; j < attrMini.length; j++) {
-        var attrName = attrMini[j];
-        if (attrList.indexOf(attrName) == -1) {
-            attrList.push(attrName);
-        }
-    }
-}
-
-// Create checkboxes
-for(var i = 0; i < attrList.length; i++) {
-    var el = document.createElement('input');
-    var label = document.createElement('label');
-    var attrbox = document.createElement('div');
-
-    label.innerHTML = attrList[i];
-    el.type = "checkbox";
-    el.name = "attrs[]";
-    el.value = attrList[i];
-
-    attrbox.appendChild(el);
-    attrbox.appendChild(label);
-    attrs.appendChild(attrbox);
-}
-
 // On update for checkboxes
 var refresh  = function() {
     var active = document.querySelectorAll('[name="attrs[]"]:checked');
