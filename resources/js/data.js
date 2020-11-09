@@ -21,7 +21,6 @@ data.attributes = [];
 for(const name in data.items) {
 	const itemList = data.items[name];
     for(const attribute of itemList) {
-		
         if (data.attributes.indexOf(attribute) == -1) {
             data.attributes.push(attribute);
         }
