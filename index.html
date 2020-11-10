@@ -34,7 +34,7 @@
 				</tr>
 				<template x-for="attribute in attributes" :key="attribute">
 					<tr>
-						<td><label x-text="attribute"></label><span></span></td>
+						<td><label x-text="attribute"></label></td>
 						<td><input @click="update = 'no'" type="radio" :name="'attributes[' + attribute + ']'" value="no" /></td>
 						<td><input @click="update = 'empty'" type="radio" :name="'attributes[' + attribute + ']'" value="empty" checked/></td>
 						<td><input @click="update = 'yes'" type="radio" :name="'attributes[' + attribute + ']'" value="yes" /></td>
