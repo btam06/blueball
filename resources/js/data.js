@@ -1,4 +1,4 @@
-let data = {};
+var data = {};
 
 // Get item list
 data.items = {
@@ -27,4 +27,30 @@ for(const name in data.items) {
     }
 }
 
+data.update = null;
 
+data.active = function (itemAttributes) {
+	// Get options
+	for(const attribute of data.attributes) {
+		const option = document.querySelector('[name="attributes[' + attribute + ']"]:checked');
+		if (option === null) {
+			return true;
+		}
+
+		if (option.value == 'yes') {
+			// Option checked but Item does not have attribute
+			if (itemAttributes.indexOf(attribute) == -1) {
+				return false;
+			}
+		}
+
+		if (option.value == 'no') {
+			// Option not checked and Item does have attribute
+			if (itemAttributes.indexOf(attribute) > -1) {
+				return false;
+			}
+		}
+	}
+		
+	return true;
+};

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 		<script src="resources/js/data.js" type="text/javascript"></script>
-		<!--<script src="resources/detect.js" type="text/javascript"></script>-->
+		<script src="resources/detect.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="resources/css/style.css" />
 	</head>
     <body x-data="data">
@@ -16,7 +16,7 @@
 				</template>
 			</tr>
 			<template x-for="[name, itemAttributes] in Object.entries(items)" :key="name">
-				<tr>
+				<tr x-show="active(itemAttributes)">
 					<td x-text="name"></td>
 					<template x-for="attribute in attributes" :key="attribute">
 						<td :class="{ 'hasAttribute': itemAttributes.indexOf(attribute) >= 0 }"></td>
@@ -34,10 +34,10 @@
 				</tr>
 				<template x-for="attribute in attributes" :key="attribute">
 					<tr>
-						<td><label x-text="attribute"></label></td>
-						<td><input type="radio" :name="'attributes[' + attribute + '][]'" :value="attribute" /></td>
-						<td><input type="radio" :name="'attributes[' + attribute + '][]'" :value="attribute" checked/></td>
-						<td><input type="radio" :name="'attributes[' + attribute + '][]'" :value="attribute" /></td>
+						<td><label x-text="attribute"></label><span></span></td>
+						<td><input @click="update = 'no'" type="radio" :name="'attributes[' + attribute + ']'" value="no" /></td>
+						<td><input @click="update = 'empty'" type="radio" :name="'attributes[' + attribute + ']'" value="empty" checked/></td>
+						<td><input @click="update = 'yes'" type="radio" :name="'attributes[' + attribute + ']'" value="yes" /></td>
 					</tr>
 				</template>
 			</table>
